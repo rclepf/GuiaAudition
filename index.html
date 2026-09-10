@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mixagem de Som para Jogos · UC Elementos Multimídia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #10151a;
+  --bg-raised: #161d24;
+  --bg-panel: #1c252d;
+  --line: #2d3944;
+  --text: #eaf2f1;
+  --text-dim: #a7bdbd;
+  --text-faint: #6c8686;
+  --accent: #5cf3ea;
+  --accent-dim: #2f9e97;
+  --warn: #f2a65c;
+  --radius: 6px;
+  --display: 'Sora', sans-serif;
+  --body: 'Inter', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;} }
+body{margin:0; background:var(--bg); color:var(--text); font-family:var(--body); line-height:1.65; font-size:16px;}
+a{color:var(--accent);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+.wave-bg{position:fixed; inset:0; z-index:-1; overflow:hidden; opacity:0.12;}
+.wave-bg svg{position:absolute; bottom:0; width:100%; height:220px;}
+
+.topbar{position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.9rem 1.75rem; background:rgba(16,21,26,0.9); backdrop-filter: blur(10px); border-bottom:1px solid var(--line); flex-wrap:wrap;}
+.topbar .brand{font-family:var(--display); font-weight:700; font-size:1rem; color:var(--text); display:flex; align-items:center; gap:0.6rem; text-decoration:none;}
+.topbar .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent); box-shadow:0 0 10px var(--accent); flex-shrink:0;}
+.topnav{display:flex; gap:1.3rem; flex-wrap:wrap;}
+.topnav a{color:var(--text-dim); text-decoration:none; font-size:0.84rem; font-family:var(--mono); transition:color 0.15s;}
+.topnav a:hover, .topnav a.active{color:var(--accent);}
+.wrap{max-width:960px; margin:0 auto; padding:0 1.75rem;}
+
+.hero{padding:5rem 0 3.5rem;}
+.hero .kicker{font-family:var(--mono); color:var(--text-dim); font-size:0.85rem; margin-bottom:1.2rem;}
+.hero h1{font-family:var(--display); font-size:clamp(2rem, 5vw, 3.1rem); line-height:1.1; font-weight:800; margin:0 0 1.2rem; max-width:18ch;}
+.hero h1 em{font-style:normal; color:var(--accent);}
+.hero p.lead{font-size:1.1rem; color:var(--text-dim); max-width:60ch; margin:0 0 2rem;}
+.meta-row{display:flex; gap:2rem; flex-wrap:wrap; font-family:var(--mono); font-size:0.85rem; color:var(--text-dim);}
+.meta-row strong{color:var(--accent);}
+
+section{padding:3.4rem 0; border-top:1px solid var(--line);}
+.sec-head{display:flex; align-items:baseline; gap:0.8rem; margin-bottom:1.6rem; flex-wrap:wrap;}
+.sec-head h2{font-family:var(--display); font-size:1.6rem; margin:0; font-weight:700;}
+.sec-sub{color:var(--text-dim); font-size:0.95rem; margin:-0.8rem 0 1.6rem;}
+
+.part-list{display:grid; gap:0.9rem;}
+.part-card{display:grid; grid-template-columns:56px 1fr auto; gap:1.2rem; align-items:center; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem 1.4rem; text-decoration:none; transition:border-color 0.15s;}
+.part-card:hover{border-color:var(--accent);}
+.part-num{font-family:var(--mono); font-size:1.3rem; color:var(--accent); font-weight:700;}
+.part-title{font-family:var(--display); font-size:1.1rem; font-weight:700; color:var(--text); margin:0 0 0.3rem;}
+.part-desc{font-size:0.88rem; color:var(--text-dim); margin:0;}
+.part-arrow{color:var(--text-faint); font-size:1.2rem;}
+
+.activity-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.2rem; margin-top:1.6rem;}
+@media (max-width:820px){ .activity-grid{grid-template-columns:1fr;} }
+.activity-card{background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:1.4rem 1.5rem;}
+.activity-card .tag{font-family:var(--mono); font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.04em;}
+.activity-card h3{font-family:var(--display); font-size:1.15rem; margin:0.5rem 0 0.7rem;}
+.activity-card p{margin:0; font-size:0.9rem; color:var(--text-dim);}
+
+.callout{background:var(--bg-raised); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 var(--radius) var(--radius) 0; padding:1.1rem 1.4rem; margin:1.6rem 0; font-size:0.92rem;}
+.callout strong{color:var(--accent); font-family:var(--mono); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:0.4rem;}
+.callout p{margin:0; color:var(--text);}
+
+.foot-nav{padding:3rem 0 3.5rem; border-top:1px solid var(--line);}
+.foot-meta{text-align:center; color:var(--text-faint); font-size:0.78rem; margin-top:1rem; font-family:var(--mono);}
+.foot-links{display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; font-family:var(--mono); font-size:0.85rem;}
+</style>
+</head>
+<body>
+<div class="wave-bg" aria-hidden="true">
+<svg viewBox="0 0 1200 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<g fill="#5cf3ea">
+<!-- procedurally-irregular waveform bars -->
+<rect x="0" y="140" width="6" height="80"/><rect x="12" y="110" width="6" height="110"/><rect x="24" y="160" width="6" height="60"/><rect x="36" y="90" width="6" height="130"/><rect x="48" y="150" width="6" height="70"/><rect x="60" y="70" width="6" height="150"/><rect x="72" y="120" width="6" height="100"/><rect x="84" y="160" width="6" height="60"/><rect x="96" y="100" width="6" height="120"/><rect x="108" y="145" width="6" height="75"/><rect x="120" y="80" width="6" height="140"/><rect x="132" y="130" width="6" height="90"/><rect x="144" y="155" width="6" height="65"/><rect x="156" y="95" width="6" height="125"/><rect x="168" y="115" width="6" height="105"/><rect x="180" y="165" width="6" height="55"/><rect x="192" y="85" width="6" height="135"/><rect x="204" y="140" width="6" height="80"/><rect x="216" y="105" width="6" height="115"/><rect x="228" y="150" width="6" height="70"/><rect x="240" y="75" width="6" height="145"/><rect x="252" y="125" width="6" height="95"/><rect x="264" y="160" width="6" height="60"/><rect x="276" y="100" width="6" height="120"/><rect x="288" y="145" width="6" height="75"/><rect x="300" y="90" width="6" height="130"/><rect x="312" y="135" width="6" height="85"/><rect x="324" y="155" width="6" height="65"/><rect x="336" y="95" width="6" height="125"/><rect x="348" y="120" width="6" height="100"/><rect x="360" y="165" width="6" height="55"/><rect x="372" y="80" width="6" height="140"/><rect x="384" y="140" width="6" height="80"/><rect x="396" y="110" width="6" height="110"/><rect x="408" y="160" width="6" height="60"/><rect x="420" y="90" width="6" height="130"/><rect x="432" y="150" width="6" height="70"/><rect x="444" y="70" width="6" height="150"/><rect x="456" y="120" width="6" height="100"/><rect x="468" y="160" width="6" height="60"/><rect x="480" y="100" width="6" height="120"/><rect x="492" y="145" width="6" height="75"/><rect x="504" y="80" width="6" height="140"/><rect x="516" y="130" width="6" height="90"/><rect x="528" y="155" width="6" height="65"/><rect x="540" y="95" width="6" height="125"/><rect x="552" y="115" width="6" height="105"/><rect x="564" y="165" width="6" height="55"/><rect x="576" y="85" width="6" height="135"/><rect x="588" y="140" width="6" height="80"/><rect x="600" y="105" width="6" height="115"/><rect x="612" y="150" width="6" height="70"/><rect x="624" y="75" width="6" height="145"/><rect x="636" y="125" width="6" height="95"/><rect x="648" y="160" width="6" height="60"/><rect x="660" y="100" width="6" height="120"/><rect x="672" y="145" width="6" height="75"/><rect x="684" y="90" width="6" height="130"/><rect x="696" y="135" width="6" height="85"/><rect x="708" y="155" width="6" height="65"/><rect x="720" y="95" width="6" height="125"/><rect x="732" y="120" width="6" height="100"/><rect x="744" y="165" width="6" height="55"/><rect x="756" y="80" width="6" height="140"/><rect x="768" y="140" width="6" height="80"/><rect x="780" y="110" width="6" height="110"/><rect x="792" y="160" width="6" height="60"/><rect x="804" y="90" width="6" height="130"/><rect x="816" y="150" width="6" height="70"/><rect x="828" y="70" width="6" height="150"/><rect x="840" y="120" width="6" height="100"/><rect x="852" y="160" width="6" height="60"/><rect x="864" y="100" width="6" height="120"/><rect x="876" y="145" width="6" height="75"/><rect x="888" y="80" width="6" height="140"/><rect x="900" y="130" width="6" height="90"/><rect x="912" y="155" width="6" height="65"/><rect x="924" y="95" width="6" height="125"/><rect x="936" y="115" width="6" height="105"/><rect x="948" y="165" width="6" height="55"/><rect x="960" y="85" width="6" height="135"/><rect x="972" y="140" width="6" height="80"/><rect x="984" y="105" width="6" height="115"/><rect x="996" y="150" width="6" height="70"/><rect x="1008" y="75" width="6" height="145"/><rect x="1020" y="125" width="6" height="95"/><rect x="1032" y="160" width="6" height="60"/><rect x="1044" y="100" width="6" height="120"/><rect x="1056" y="145" width="6" height="75"/><rect x="1068" y="90" width="6" height="130"/><rect x="1080" y="135" width="6" height="85"/><rect x="1092" y="155" width="6" height="65"/><rect x="1104" y="95" width="6" height="125"/><rect x="1116" y="120" width="6" height="100"/><rect x="1128" y="165" width="6" height="55"/><rect x="1140" y="80" width="6" height="140"/><rect x="1152" y="140" width="6" height="80"/><rect x="1164" y="110" width="6" height="110"/><rect x="1176" y="160" width="6" height="60"/><rect x="1188" y="90" width="6" height="130"/>
+</g>
+</svg>
+</div>
+
+<header class="topbar">
+  <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Mixagem de Som para Jogos</a>
+  <nav class="topnav" aria-label="Navegação da página">
+    <a href="parte-1-o-que-e.html">01 O que é</a>
+    <a href="parte-2-ferramentas.html">02 Ferramentas</a>
+    <a href="parte-3-mixagem-guiada.html">03 Mixagem guiada</a>
+    <a href="parte-4-integracao.html">04 Integração</a>
+    <a href="parte-5-exportacao.html">05 Exportação</a>
+    <a href="parte-6-dicas.html">06 Dicas</a>
+  </nav>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero" style="border-top:none; padding-top:4rem;">
+    <p class="kicker">Planejamento e Produção de Elementos Multimídia de Jogos Digitais</p>
+    <h1>Feche o pipeline audiovisual: dê <em>som profissional</em> ao seu jogo.</h1>
+    <p class="lead">Um guia de apoio, em seis partes, para sair do zero no Adobe Audition e chegar preparado para a Atividade Prática 06 — a mixagem e masterização final do teaser trailer que vocês já montaram no Premiere. Se ainda não organizou e editou o áudio bruto, comece pelo <a href="https://rclepf.github.io/GuiaEdicaoSom/">Guia de Edição de Som</a> — este guia continua exatamente de onde ele termina.</p>
+    <div class="meta-row">
+      <div>Software <strong>Adobe Audition</strong></div>
+      <div>6 partes</div>
+      <div>Foco <strong>mixagem, tratamento e finalização de áudio para jogos</strong></div>
+    </div>
+  </section>
+
+  <section id="como-usar">
+    <div class="sec-head"><h2>Como usar este material</h2></div>
+    <p class="sec-sub">Seis partes, um fechamento só. As partes 1 e 2 preparam o terreno; a 3 é o tutorial de mixagem, ancorado na Atividade 06; a 4 conecta este guia de volta ao Premiere; e as partes 5 e 6 fecham o processo técnico de entrega — o mesmo processo cobrado em todas as atividades práticas da disciplina.</p>
+
+    <div class="part-list">
+      <a class="part-card" href="parte-1-o-que-e.html">
+        <span class="part-num">01</span>
+        <div><p class="part-title">O que é o Audition</p><p class="part-desc">Multitrack vs. Waveform, e por que a mixagem entra depois do Premiere, não antes.</p></div>
+        <span class="part-arrow">→</span>
+      </a>
+      <a class="part-card" href="parte-2-ferramentas.html">
+        <span class="part-num">02</span>
+        <div><p class="part-title">Configuração e ferramentas básicas</p><p class="part-desc">Multitrack Editor, Waveform Editor, Effects Rack e o Editor de Frequência (Spectral).</p></div>
+        <span class="part-arrow">→</span>
+      </a>
+      <a class="part-card" href="parte-3-mixagem-guiada.html">
+        <span class="part-num">03</span>
+        <div><p class="part-title">Mixagem guiada: a trilha do seu teaser</p><p class="part-desc">Tutorial passo a passo — nivelamento, EQ, compressão, redução de ruído e automação.</p></div>
+        <span class="part-arrow">→</span>
+      </a>
+      <a class="part-card" href="parte-4-integracao.html">
+        <span class="part-num">04</span>
+        <div><p class="part-title">Integração Premiere ↔ Audition</p><p class="part-desc">O fluxo "Edit in Adobe Audition" e como devolver o áudio finalizado para a timeline.</p></div>
+        <span class="part-arrow">→</span>
+      </a>
+      <a class="part-card" href="parte-5-exportacao.html">
+        <span class="part-num">05</span>
+        <div><p class="part-title">Exportação e formatos</p><p class="part-desc">WAV vs. MP3, sample rate, bit depth e referência de loudness para vídeo.</p></div>
+        <span class="part-arrow">→</span>
+      </a>
+      <a class="part-card" href="parte-6-dicas.html">
+        <span class="part-num">06</span>
+        <div><p class="part-title">Dicas gerais</p><p class="part-desc">Boas práticas de mixagem e os erros mais comuns de quem está começando.</p></div>
+        <span class="part-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="atividade">
+    <div class="sec-head"><h2>Para onde este material aponta</h2></div>
+    <p class="sec-sub">Este guia foi desenhado para preparar diretamente o fechamento do pipeline audiovisual da UC:</p>
+
+    <div class="activity-grid">
+      <div class="activity-card">
+        <span class="tag">Atividade 05 (retomada)</span>
+        <h3>Teaser Trailer de Jogo</h3>
+        <p>O ponto de partida: o teaser de 15–20s montado no Premiere, com trilha sonora e SFX ainda em nível de rascunho.</p>
+      </div>
+      <div class="activity-card">
+        <span class="tag">Guia complementar</span>
+        <h3>Edição de Som</h3>
+        <p>Gravar, organizar e arranjar o áudio bruto antes de mixar. Se ainda não fez isso, <a href="https://rclepf.github.io/GuiaEdicaoSom/">comece por aqui</a>.</p>
+      </div>
+      <div class="activity-card">
+        <span class="tag">Atividade 06</span>
+        <h3>Mixagem e Masterização do Teaser</h3>
+        <p>Mixar no Audition (Parte 03) e devolver o áudio finalizado ao Premiere via integração (Parte 04), fechando a peça com som pronto para publicação.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Por que isso fecha o semestre</strong>
+      <p>Só faz sentido mixar e masterizar depois que existe uma trilha, SFX e um vídeo já montado — exatamente o que a Atividade 05 entrega. A Atividade 06 não começa do zero: ela pega o mesmo projeto e o leva à sua forma final.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot-nav">
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="https://rclepf.github.io/GuiaEdicaoSom/">Guia de Edição de Som</a>
+      <a href="https://rclepf.github.io/GuiaPremiere/">Guia Premiere</a>
+      <a href="https://rclepf.github.io/PacoteAdobeJogos/">Pacote Adobe</a>
+      <a href="https://rclepf.github.io/IntroducaoPlanejamentoProducaoElementos/">Mapa do Semestre</a>
+    </div>
+    <p class="foot-meta">Planejamento e Produção de Elementos Multimídia de Jogos Digitais · Material de apoio prático · Adobe Audition</p>
+  </div>
+</footer>
+
+</body>
+</html>
