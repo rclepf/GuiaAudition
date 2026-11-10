@@ -127,7 +127,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
 
   <section>
     <div class="sec-head"><span class="sec-num">01</span><h2>Organize a sessão antes de mixar</h2></div>
-    <p class="lead-in">Importe os arquivos originais (não os que já estão embutidos no vídeo exportado) numa nova sessão Multitrack, em trilhas separadas por tipo:</p>
+    <p class="lead-in">Importe os arquivos originais (não os que já estão embutidos no vídeo exportado) numa nova sessão Múltiplas faixas, em trilhas separadas por tipo:</p>
     <div class="tracks">
       <div class="track-row music"><span class="track-name">MÚSICA</span><div class="track-bar"></div></div>
       <div class="track-row sfx"><span class="track-name">SFX</span><div class="track-bar"></div></div>
@@ -153,7 +153,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
         <div class="step-num">2</div>
         <div>
           <h4>Equalização (EQ)</h4>
-          <p>Use o Effects Rack → Parametric Equalizer em cada trilha. Corte frequências graves desnecessárias da música (abaixo de ~80Hz costuma ser só "peso" sem informação) para abrir espaço para os SFX de impacto.</p>
+          <p>Use o Rack de efeitos → Equalizador paramétrico em cada trilha. Corte frequências graves desnecessárias da música (abaixo de ~80Hz costuma ser só "peso" sem informação) para abrir espaço para os SFX de impacto.</p>
           <p class="why">Por quê: cada elemento ocupando sua própria faixa de frequência é o que evita uma mixagem "embolada".</p>
         <p class="check"><b>✔ Checkpoint</b>a voz ficou mais clara e sem “caixa” grave. Alterne o EQ ligado e desligado: a diferença deve ser audível, mas natural.</p>
         </div>
@@ -162,7 +162,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
         <div class="step-num">3</div>
         <div>
           <h4>Compressão</h4>
-          <p>Aplique um Compressor (Effects Rack) na trilha de música para controlar picos de volume sem precisar automatizar cada variação manualmente. Comece com uma proporção (ratio) suave, como 3:1.</p>
+          <p>Aplique um Compactador de banda simples (Compressor), no Rack de efeitos na trilha de música para controlar picos de volume sem precisar automatizar cada variação manualmente. Comece com uma proporção (ratio) suave, como 3:1.</p>
           <p class="why">Por quê: uma trilha com dinâmica muito variada fica desconfortável de ouvir em alto-falantes pequenos, como os de celular.</p>
         <p class="check"><b>✔ Checkpoint</b>as palavras baixas e altas têm volume mais parecido, sem a voz parecer “apertada”. O medidor de redução de ganho mostra poucos dB (em geral 3 a 6).</p>
         </div>
@@ -171,7 +171,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
         <div class="step-num">4</div>
         <div>
           <h4>Redução de ruído</h4>
-          <p>Se algum SFX ou locução tiver chiado de fundo, use o Waveform Editor: selecione um trecho só de ruído, capture o "footprint" em Effects → Noise Reduction / Restoration → Noise Reduction (Process), e aplique no clipe inteiro.</p>
+          <p>Se algum SFX ou locução tiver chiado de fundo, use o Editor Forma de onda: selecione um trecho só de ruído, capture o "footprint" em Efeitos → Redução/Restauração de ruído → Redução de Ruído (processo), e aplique no clipe inteiro.</p>
           <p class="why">Por quê: o Audition precisa de uma amostra do ruído puro para saber exatamente o que remover sem distorcer o resto do som.</p>
         <p class="check"><b>✔ Checkpoint</b>o chiado diminuiu sem deixar a voz “metálica” ou com som de água. Se ficou artificial, reduza a intensidade.</p>
         </div>
@@ -189,7 +189,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
         <div class="step-num">6</div>
         <div>
           <h4>Confira em mono e em volume baixo</h4>
-          <p>Alterne a saída para mono (Window → Levels, ou o botão de mono do Mixer) e ouça numa caixa de som pequena, não só de fones. Muitos problemas de mixagem só aparecem nessas condições.</p>
+          <p>Alterne a saída para mono (Janela → Medidores de nível, ou o botão de mono do Mixer) e ouça numa caixa de som pequena, não só de fones. Muitos problemas de mixagem só aparecem nessas condições.</p>
           <p class="why">Por quê: boa parte do público vai assistir o teaser no celular, com o alto-falante embutido — o pior cenário de reprodução, e o mais importante de testar.</p>
         <p class="check"><b>✔ Checkpoint</b>nada importante some em mono, e a narração continua compreensível em volume baixo.</p>
         </div>
@@ -202,10 +202,10 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
     <table>
       <thead><tr><th>Efeito</th><th>Onde aplicar</th><th>Para quê</th></tr></thead>
       <tbody>
-        <tr><td>Parametric EQ</td><td>Effects Rack, por trilha</td><td>Separar frequências entre música, SFX e locução</td></tr>
-        <tr><td>Dynamics (Compressor)</td><td>Effects Rack, por trilha</td><td>Controlar picos de volume, deixar a dinâmica mais uniforme</td></tr>
-        <tr><td>Noise Reduction</td><td>Waveform Editor, por clipe</td><td>Remover ruído de fundo constante (chiado, ventilador)</td></tr>
-        <tr><td>Hard Limiter</td><td>Master, por último</td><td>Evitar que o volume final ultrapasse 0dB (clipping)</td></tr>
+        <tr><td>EQ paramétrico</td><td>Rack de efeitos, por trilha</td><td>Separar frequências entre música, SFX e locução</td></tr>
+        <tr><td>Dynamics (Compressor)</td><td>Rack de efeitos, por trilha</td><td>Controlar picos de volume, deixar a dinâmica mais uniforme</td></tr>
+        <tr><td>Redução de ruído</td><td>Editor Forma de onda, por clipe</td><td>Remover ruído de fundo constante (chiado, ventilador)</td></tr>
+        <tr><td>Limitador forte (Hard Limiter)</td><td>Master, por último</td><td>Evitar que o volume final ultrapasse 0dB (clipping)</td></tr>
       </tbody>
     </table>
     <div class="callout warn">
