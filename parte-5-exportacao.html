@@ -149,7 +149,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
       <div class="loudness-bar"></div>
       <div class="loudness-marks"><span>-23 LUFS (broadcast/TV)</span><span>-16 a -14 LUFS (redes sociais)</span><span>0 dB (clipping)</span></div>
     </div>
-    <p>Para um teaser voltado a redes sociais, mirar algo em torno de <strong style="color:var(--text)">-14 LUFS integrado</strong> é uma referência segura — alto o suficiente para não soar fraco perto de outros vídeos, sem estourar. O painel de Loudness Radar do Audition (Rack de efeitos → Amplitude e compactação → Loudness Radar) mostra essa métrica em tempo real.</p>
+    <p>Para um teaser voltado a redes sociais, mirar algo em torno de <strong style="color:var(--text)">-14 LUFS integrado</strong> é uma referência segura — alto o suficiente para não soar fraco perto de outros vídeos, sem estourar. Para medir, abra o arquivo exportado no Editor Forma de onda, vá em Janela → Estatísticas de amplitude e clique em <em>Explorar</em>: o valor aparece na linha “Volume ITU-R BS.1770”, em LUFS.</p>
     <div class="callout">
       <strong>Não existe "volume perfeito" universal</strong>
       <p>O número certo depende de onde o teaser será publicado. Na dúvida, os passos da Parte 03 (nivelamento, compressão, limiter no master) já deixam o áudio numa faixa saudável mesmo sem medir o LUFS exato.</p>
@@ -159,7 +159,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
   <section>
     <div class="sec-head"><span class="sec-num">04</span><h2>Faça agora e teste o que aprendeu</h2></div>
 <p class="lead-in">Medir é melhor que achar. O número dá segurança ao entregar.</p>
-<div class="callout"><strong>Faça agora</strong><ol><li>Exporte o mixdown em WAV, 48 kHz, 24 bits.</li><li>Meça o volume integrado no painel de loudness e anote o valor.</li><li>Se estiver muito fora do alvo, ajuste e meça de novo.</li></ol></div><h3 style="font-family:var(--display);margin:2rem 0 0.6rem;">Teste o que aprendeu</h3>
+<div class="callout"><strong>Faça agora</strong><ol><li>Exporte o mixdown em WAV, 48 kHz, 24 bits.</li><li>Meça o volume em Janela → Estatísticas de amplitude → Explorar e anote o valor em LUFS.</li><li>Se estiver muito fora do alvo, ajuste e meça de novo.</li></ol></div><h3 style="font-family:var(--display);margin:2rem 0 0.6rem;">Teste o que aprendeu</h3>
 <details class="quiz"><summary>1. Por que exportar o arquivo de trabalho em WAV?</summary><p>Porque preserva a qualidade, e o MP3 só deve ser usado na entrega final.</p></details>
 <details class="quiz"><summary>2. Qual sample rate é usual para vídeo?</summary><p>48 kHz.</p></details>
 <details class="quiz"><summary>3. O que mede o LUFS?</summary><p>O volume percebido ao longo do tempo, base para padronizar a entrega.</p></details>

@@ -171,7 +171,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
         <div class="step-num">4</div>
         <div>
           <h4>Redução de ruído</h4>
-          <p>Se algum SFX ou locução tiver chiado de fundo, use o Editor Forma de onda: selecione um trecho só de ruído, capture o "footprint" em Efeitos → Redução/Restauração de ruído → Redução de Ruído (processo), e aplique no clipe inteiro.</p>
+          <p>Se algum SFX ou locução tiver chiado de fundo, use o Editor Forma de onda: selecione um trecho só de ruído, pressione <span class="kbd">Shift</span>+<span class="kbd">P</span> (Impressão de ruído de captura) e confirme com OK. Depois abra Efeitos → Redução/Restauração de ruído → Redução de Ruído (processo) (<span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">P</span>), clique em <em>Selecionar arquivo inteiro</em> e em <em>Aplicar</em>. Os campos são “Redução de ruído” (padrão 50%) e “Reduzir para” (padrão 16 dB). Sem a impressão capturada, a janela avisa “Impressão de ruído indefinida”.</p>
           <p class="why">Por quê: o Audition precisa de uma amostra do ruído puro para saber exatamente o que remover sem distorcer o resto do som.</p>
         <p class="check"><b>✔ Checkpoint</b>o chiado diminuiu sem deixar a voz “metálica” ou com som de água. Se ficou artificial, reduza a intensidade.</p>
         </div>
@@ -180,7 +180,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
         <div class="step-num">5</div>
         <div>
           <h4>Automação: ducking</h4>
-          <p>Se houver locução ou uma cartela de texto importante, abaixe automaticamente o volume da música nesse momento (automação de volume na trilha, ou o efeito Auto-Ducking do Audition) e volte ao normal logo depois.</p>
+          <p>Se houver locução ou uma cartela de texto importante, abaixe automaticamente o volume da música nesse momento (automação de volume na trilha, ou o painel Áudio essencial: selecione o clipe de música, clique em <em>Música</em> e ligue a caixa <em>Redução</em>, escolhendo “Reduzir em relação a” Diálogo) e volte ao normal logo depois.</p>
           <p class="why">Por quê: é a técnica que garante que nenhum elemento importante fique "escondido" atrás da música.</p>
         <p class="check"><b>✔ Checkpoint</b>a música abaixa suavemente quando a narração entra e volta quando ela termina, sem “pulos” bruscos.</p>
         </div>
@@ -205,7 +205,7 @@ details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
         <tr><td>EQ paramétrico</td><td>Rack de efeitos, por trilha</td><td>Separar frequências entre música, SFX e locução</td></tr>
         <tr><td>Dynamics (Compressor)</td><td>Rack de efeitos, por trilha</td><td>Controlar picos de volume, deixar a dinâmica mais uniforme</td></tr>
         <tr><td>Redução de ruído</td><td>Editor Forma de onda, por clipe</td><td>Remover ruído de fundo constante (chiado, ventilador)</td></tr>
-        <tr><td>Limitador forte (Hard Limiter)</td><td>Master, por último</td><td>Evitar que o volume final ultrapasse 0dB (clipping)</td></tr>
+        <tr><td>Limitador forte (Hard Limiter; a janela se chama “Limitador pesado”)</td><td>Master, por último</td><td>Evitar que o volume final ultrapasse 0dB (clipping)</td></tr>
       </tbody>
     </table>
     <div class="callout warn">
