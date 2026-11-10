@@ -70,6 +70,32 @@ td:first-child{color:var(--text); font-weight:600;}
 .foot-prev .fn-title, .foot-next .fn-title{font-family:var(--display); color:var(--text); font-size:1.05rem; font-weight:700;}
 .foot-prev:hover .fn-title, .foot-next:hover .fn-title{color:var(--accent);}
 .foot-meta{text-align:center; color:var(--text-faint); font-size:0.76rem; margin-top:2.4rem; font-family:var(--mono);}
+
+/* --- didática guiada --- */
+.goal{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:0 0 2.4rem;}
+@media (max-width:760px){ .goal{grid-template-columns:1fr;} }
+.goal .gcard{background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem 1.25rem;}
+.goal h3{font-family:var(--mono); font-size:0.74rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin:0 0 0.55rem; font-weight:700;}
+.goal ul{margin:0; padding-left:1.1rem; color:var(--text-dim); font-size:0.9rem;}
+.goal li{margin-bottom:0.35rem;}
+.goal p{margin:0; color:var(--text-dim); font-size:0.9rem;}
+.check{margin:0.8rem 0 0; padding:0.65rem 0.95rem; border-left:3px solid var(--accent); background:rgba(92,243,234,0.07); font-size:0.86rem; color:var(--text); border-radius:0 var(--radius) var(--radius) 0;}
+.check b{color:var(--accent); font-family:var(--mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; margin-right:0.45rem;}
+.how{margin:0.7rem 0 0; padding-left:1.25rem; color:var(--text-dim); font-size:0.88rem;}
+.how li{margin-bottom:0.3rem;}
+.how li::marker{color:var(--accent); font-family:var(--mono);}
+details.quiz{background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); margin:0.7rem 0; padding:0.9rem 1.2rem;}
+details.quiz summary{cursor:pointer; color:var(--text); font-weight:600; font-size:0.95rem;}
+details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
+.callout.warn{border-left-color:var(--warn);}
+.callout.warn strong{color:var(--warn);}
+.callout ol, .callout ul{margin:0.4rem 0 0; padding-left:1.2rem; color:var(--text); font-size:0.9rem;}
+.callout li{margin-bottom:0.3rem;}
+.mini-table{width:100%; border-collapse:collapse; margin:1.2rem 0; font-size:0.88rem;}
+.mini-table th,.mini-table td{text-align:left; padding:0.6rem 0.8rem; border-bottom:1px solid var(--line); color:var(--text-dim); vertical-align:top;}
+.mini-table th{font-family:var(--mono); font-size:0.74rem; text-transform:uppercase; color:var(--text-faint); font-weight:500;}
+.tbl{overflow-x:auto;}
+@media (max-width:640px){ .tbl .mini-table{min-width:560px;} }
 </style>
 </head>
 <body>
@@ -92,6 +118,13 @@ td:first-child{color:var(--text); font-weight:600;}
     <p class="lead">Use a trilha sonora e os SFX do teaser da Atividade 05. Ao final desta parte, o áudio estará nivelado, equalizado, limpo de ruído e pronto para voltar ao Premiere (Parte 04).</p>
   </div>
 
+  <div class="goal">
+    <div class="gcard"><h3>Nesta parte você vai</h3><ul><li>Organizar a sessão em trilhas</li><li>Nivelar, equalizar e comprimir a narração</li><li>Aplicar redução de ruído e ducking na música</li></ul></div>
+    <div class="gcard"><h3>Tempo e material</h3><p><strong style="color:var(--text)">30 minutos</strong></p><ul style="margin-top:0.5rem"><li>Sessão .sesx do Guia de Edição de Som</li><li>Fones de ouvido</li><li>Medidor de níveis visível</li></ul></div>
+    <div class="gcard"><h3>Palavras-chave</h3><ul><li><strong style="color:var(--text)">Gain staging:</strong> nivelar cada trilha</li><li><strong style="color:var(--text)">EQ:</strong> ajusta frequências</li><li><strong style="color:var(--text)">Compressão:</strong> reduz diferença de volume</li><li><strong style="color:var(--text)">Ducking:</strong> música abaixa na voz</li></ul></div>
+  </div>
+
+
   <section>
     <div class="sec-head"><span class="sec-num">01</span><h2>Organize a sessão antes de mixar</h2></div>
     <p class="lead-in">Importe os arquivos originais (não os que já estão embutidos no vídeo exportado) numa nova sessão Multitrack, em trilhas separadas por tipo:</p>
@@ -113,6 +146,7 @@ td:first-child{color:var(--text); font-weight:600;}
           <h4>Nivelamento (gain staging)</h4>
           <p>Antes de qualquer efeito, ajuste o volume relativo entre as trilhas no Mixer: a música não deve competir com os SFX de impacto, e ambos não devem "estourar" o medidor de picos.</p>
           <p class="why">Por quê: aplicar EQ ou compressão sobre níveis desequilibrados só amplifica o problema — o nivelamento vem sempre primeiro.</p>
+        <p class="check"><b>✔ Checkpoint</b>a narração fica com picos entre -12 dB e -6 dB, a música mais baixa que a voz e os efeitos naturais sobre a imagem. Nenhuma trilha toca o vermelho.</p>
         </div>
       </div>
       <div class="step">
@@ -121,6 +155,7 @@ td:first-child{color:var(--text); font-weight:600;}
           <h4>Equalização (EQ)</h4>
           <p>Use o Effects Rack → Parametric Equalizer em cada trilha. Corte frequências graves desnecessárias da música (abaixo de ~80Hz costuma ser só "peso" sem informação) para abrir espaço para os SFX de impacto.</p>
           <p class="why">Por quê: cada elemento ocupando sua própria faixa de frequência é o que evita uma mixagem "embolada".</p>
+        <p class="check"><b>✔ Checkpoint</b>a voz ficou mais clara e sem “caixa” grave. Alterne o EQ ligado e desligado: a diferença deve ser audível, mas natural.</p>
         </div>
       </div>
       <div class="step">
@@ -129,6 +164,7 @@ td:first-child{color:var(--text); font-weight:600;}
           <h4>Compressão</h4>
           <p>Aplique um Compressor (Effects Rack) na trilha de música para controlar picos de volume sem precisar automatizar cada variação manualmente. Comece com uma proporção (ratio) suave, como 3:1.</p>
           <p class="why">Por quê: uma trilha com dinâmica muito variada fica desconfortável de ouvir em alto-falantes pequenos, como os de celular.</p>
+        <p class="check"><b>✔ Checkpoint</b>as palavras baixas e altas têm volume mais parecido, sem a voz parecer “apertada”. O medidor de redução de ganho mostra poucos dB (em geral 3 a 6).</p>
         </div>
       </div>
       <div class="step">
@@ -137,6 +173,7 @@ td:first-child{color:var(--text); font-weight:600;}
           <h4>Redução de ruído</h4>
           <p>Se algum SFX ou locução tiver chiado de fundo, use o Waveform Editor: selecione um trecho só de ruído, capture o "footprint" em Effects → Noise Reduction / Restoration → Noise Reduction (Process), e aplique no clipe inteiro.</p>
           <p class="why">Por quê: o Audition precisa de uma amostra do ruído puro para saber exatamente o que remover sem distorcer o resto do som.</p>
+        <p class="check"><b>✔ Checkpoint</b>o chiado diminuiu sem deixar a voz “metálica” ou com som de água. Se ficou artificial, reduza a intensidade.</p>
         </div>
       </div>
       <div class="step">
@@ -145,6 +182,7 @@ td:first-child{color:var(--text); font-weight:600;}
           <h4>Automação: ducking</h4>
           <p>Se houver locução ou uma cartela de texto importante, abaixe automaticamente o volume da música nesse momento (automação de volume na trilha, ou o efeito Auto-Ducking do Audition) e volte ao normal logo depois.</p>
           <p class="why">Por quê: é a técnica que garante que nenhum elemento importante fique "escondido" atrás da música.</p>
+        <p class="check"><b>✔ Checkpoint</b>a música abaixa suavemente quando a narração entra e volta quando ela termina, sem “pulos” bruscos.</p>
         </div>
       </div>
       <div class="step">
@@ -153,6 +191,7 @@ td:first-child{color:var(--text); font-weight:600;}
           <h4>Confira em mono e em volume baixo</h4>
           <p>Alterne a saída para mono (Window → Levels, ou o botão de mono do Mixer) e ouça numa caixa de som pequena, não só de fones. Muitos problemas de mixagem só aparecem nessas condições.</p>
           <p class="why">Por quê: boa parte do público vai assistir o teaser no celular, com o alto-falante embutido — o pior cenário de reprodução, e o mais importante de testar.</p>
+        <p class="check"><b>✔ Checkpoint</b>nada importante some em mono, e a narração continua compreensível em volume baixo.</p>
         </div>
       </div>
     </div>
@@ -174,6 +213,17 @@ td:first-child{color:var(--text); font-weight:600;}
       <p>EQ antes de compressão, redução de ruído antes de qualquer outro efeito no mesmo clipe, e o Limiter sempre por último, na trilha master — mudar essa ordem muda o resultado.</p>
     </div>
   </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Faça agora e teste o que aprendeu</h2></div>
+<p class="lead-in">Mixar é decidir ouvindo. Os números do guia são ponto de partida; a decisão final é do seu ouvido.</p>
+<div class="callout"><strong>Faça agora</strong><ol><li>Faça uma cópia da sessão (teaser_mix_v1.sesx) antes de começar.</li><li>Aplique os seis ajustes na ordem do guia e ouça com o efeito ligado e desligado a cada etapa.</li><li>Anote os valores que usou (EQ, compressão, redução de ruído) em uma tabela de três linhas.</li></ol></div><div class="callout warn"><strong>Travou? Tente isto</strong><ul><li><strong>Voz com som de lata:</strong> você exagerou no EQ de agudos ou na redução de ruído; volte o parâmetro pela metade.</li><li><strong>Música ainda cobre a voz:</strong> abaixe a trilha de música mais alguns dB antes de mexer no EQ.</li></ul></div><h3 style="font-family:var(--display);margin:2rem 0 0.6rem;">Teste o que aprendeu</h3>
+<details class="quiz"><summary>1. Por que nivelar antes de equalizar?</summary><p>Porque EQ e compressão reagem ao nível do sinal; começar pelo nível dá uma base estável.</p></details>
+<details class="quiz"><summary>2. O que o ducking faz?</summary><p>Abaixa a música automaticamente enquanto a narração fala.</p></details>
+<details class="quiz"><summary>3. Por que conferir em mono?</summary><p>Para garantir que nada some se o som for tocado em um alto-falante só.</p></details>
+
+  </section>
+
 </main>
 
 <footer class="foot-nav">

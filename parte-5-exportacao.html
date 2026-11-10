@@ -59,6 +59,32 @@ td:first-child{color:var(--text); font-weight:600;}
 .foot-prev .fn-title, .foot-next .fn-title{font-family:var(--display); color:var(--text); font-size:1.05rem; font-weight:700;}
 .foot-prev:hover .fn-title, .foot-next:hover .fn-title{color:var(--accent);}
 .foot-meta{text-align:center; color:var(--text-faint); font-size:0.76rem; margin-top:2.4rem; font-family:var(--mono);}
+
+/* --- didática guiada --- */
+.goal{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:0 0 2.4rem;}
+@media (max-width:760px){ .goal{grid-template-columns:1fr;} }
+.goal .gcard{background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem 1.25rem;}
+.goal h3{font-family:var(--mono); font-size:0.74rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin:0 0 0.55rem; font-weight:700;}
+.goal ul{margin:0; padding-left:1.1rem; color:var(--text-dim); font-size:0.9rem;}
+.goal li{margin-bottom:0.35rem;}
+.goal p{margin:0; color:var(--text-dim); font-size:0.9rem;}
+.check{margin:0.8rem 0 0; padding:0.65rem 0.95rem; border-left:3px solid var(--accent); background:rgba(92,243,234,0.07); font-size:0.86rem; color:var(--text); border-radius:0 var(--radius) var(--radius) 0;}
+.check b{color:var(--accent); font-family:var(--mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; margin-right:0.45rem;}
+.how{margin:0.7rem 0 0; padding-left:1.25rem; color:var(--text-dim); font-size:0.88rem;}
+.how li{margin-bottom:0.3rem;}
+.how li::marker{color:var(--accent); font-family:var(--mono);}
+details.quiz{background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); margin:0.7rem 0; padding:0.9rem 1.2rem;}
+details.quiz summary{cursor:pointer; color:var(--text); font-weight:600; font-size:0.95rem;}
+details.quiz p{margin:0.7rem 0 0; color:var(--text-dim); font-size:0.9rem;}
+.callout.warn{border-left-color:var(--warn);}
+.callout.warn strong{color:var(--warn);}
+.callout ol, .callout ul{margin:0.4rem 0 0; padding-left:1.2rem; color:var(--text); font-size:0.9rem;}
+.callout li{margin-bottom:0.3rem;}
+.mini-table{width:100%; border-collapse:collapse; margin:1.2rem 0; font-size:0.88rem;}
+.mini-table th,.mini-table td{text-align:left; padding:0.6rem 0.8rem; border-bottom:1px solid var(--line); color:var(--text-dim); vertical-align:top;}
+.mini-table th{font-family:var(--mono); font-size:0.74rem; text-transform:uppercase; color:var(--text-faint); font-weight:500;}
+.tbl{overflow-x:auto;}
+@media (max-width:640px){ .tbl .mini-table{min-width:560px;} }
 </style>
 </head>
 <body>
@@ -80,6 +106,13 @@ td:first-child{color:var(--text); font-weight:600;}
     <h1>Exportação e formatos</h1>
     <p class="lead">A escolha de formato, taxa de amostragem e volume final determina se o áudio vai soar bem em qualquer dispositivo — do notebook do professor ao celular de quem assiste no Instagram.</p>
   </div>
+
+  <div class="goal">
+    <div class="gcard"><h3>Nesta parte você vai</h3><ul><li>Escolher entre WAV e MP3</li><li>Definir sample rate e bit depth</li><li>Medir o volume em LUFS</li></ul></div>
+    <div class="gcard"><h3>Tempo e material</h3><p><strong style="color:var(--text)">15 minutos</strong></p><ul style="margin-top:0.5rem"><li>O mixdown da Parte 04</li></ul></div>
+    <div class="gcard"><h3>Palavras-chave</h3><ul><li><strong style="color:var(--text)">WAV:</strong> sem perda</li><li><strong style="color:var(--text)">MP3:</strong> comprimido</li><li><strong style="color:var(--text)">48 kHz:</strong> padrão de vídeo</li><li><strong style="color:var(--text)">LUFS:</strong> volume percebido</li></ul></div>
+  </div>
+
 
   <section>
     <div class="sec-head"><span class="sec-num">01</span><h2>WAV vs. MP3</h2></div>
@@ -122,6 +155,17 @@ td:first-child{color:var(--text); font-weight:600;}
       <p>O número certo depende de onde o teaser será publicado. Na dúvida, os passos da Parte 03 (nivelamento, compressão, limiter no master) já deixam o áudio numa faixa saudável mesmo sem medir o LUFS exato.</p>
     </div>
   </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Faça agora e teste o que aprendeu</h2></div>
+<p class="lead-in">Medir é melhor que achar. O número dá segurança ao entregar.</p>
+<div class="callout"><strong>Faça agora</strong><ol><li>Exporte o mixdown em WAV, 48 kHz, 24 bits.</li><li>Meça o volume integrado no painel de loudness e anote o valor.</li><li>Se estiver muito fora do alvo, ajuste e meça de novo.</li></ol></div><h3 style="font-family:var(--display);margin:2rem 0 0.6rem;">Teste o que aprendeu</h3>
+<details class="quiz"><summary>1. Por que exportar o arquivo de trabalho em WAV?</summary><p>Porque preserva a qualidade, e o MP3 só deve ser usado na entrega final.</p></details>
+<details class="quiz"><summary>2. Qual sample rate é usual para vídeo?</summary><p>48 kHz.</p></details>
+<details class="quiz"><summary>3. O que mede o LUFS?</summary><p>O volume percebido ao longo do tempo, base para padronizar a entrega.</p></details>
+
+  </section>
+
 </main>
 
 <footer class="foot-nav">
